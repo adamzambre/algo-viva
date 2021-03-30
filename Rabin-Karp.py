@@ -98,7 +98,7 @@ def RabinKarp(string,searchedString,Q):
     M=len(searchedString)
     N=len(string)
     R=10
-    RM=(R**(M-1)) % Q# Radix for numbers after the Mth number
+    RM=(R**(M-1)) % Q# Radix used for numbers after the Mth number
     p=0#hash for searchedstring
     t=0#hash for string
 
@@ -117,7 +117,8 @@ def RabinKarp(string,searchedString,Q):
 
     for i in range(M,N):#start searching from the Mth element
         print("[t] i: "+str(i)+" char: "+string[i]+" ascii: "+str(ord(string[i])))
-        t = ( R * (t - ord(string[i-M])*RM) + ord(string[i])) % Q#impliment apa yang dalam video
+        t = t - ord(string[i-M])*RM
+        t = ( R * t + ord(string[i])) % Q#impliment apa yang dalam video
         print("t: "+str(t))
         if p==t:
             return "found at index "+ str(i-M+1)
